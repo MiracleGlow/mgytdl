@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MG-YTDL - Download YouTube</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 56px; /* Padding for fixed-top navbar */
+    }
+    .container {
+      max-width: 720px; /* Max width for the form container */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MG-YTDL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- Anda bisa menambahkan item menu lain di sini jika perlu -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-5 pt-3">
+    <div class="text-center mb-4">
+      <h1>Downloader YouTube</h1>
+      <p class="lead">Unduh video atau audio dari YouTube dengan mudah.</p>
+    </div>
+
+    <form action="/download" method="post">
+      <div class="mb-3">
+        <label for="urlInput" class="form-label">URL YouTube:</label>
+        <input type="url" class="form-control" id="urlInput" name="url" required placeholder="https://youtu.be/..." aria-describedby="urlHelp">
+        <div id="urlHelp" class="form-text">Masukkan link video YouTube yang valid.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="formatSelect" class="form-label">Format:</label>
+        <select class="form-select" id="formatSelect" name="format">
+          <option value="video" selected>Video + Audio (MP4)</option>
+          <option value="audio">Audio saja (MP3/M4A)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download me-2" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </svg>
+        Unduh
+      </button>
+    </form>
+    
+    <footer class="mt-5 mb-3 text-center text-muted">
+        <p>© <script>document.write(new Date().getFullYear())</script> MiracleGlow. Dibuat dengan yt-dlp.</p>
+    </footer>
+
+  </div>
+
+  <!-- Bootstrap JS Bundle (Popper included) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
