@@ -40,4 +40,4 @@ def download():
 
 if __name__ == '__main__':
     # Jalankan server debug mode untuk pengembangan :contentReference[oaicite:8]{index=8}
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5342)
