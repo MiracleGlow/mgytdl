@@ -3,16 +3,14 @@ import subprocess
 import yt_dlp
 import gradio as gr
 
-# Pastikan ffmpeg ada di PATH, atau tulis path lengkapnya
-FFMPEG_PATH = "ffmpeg"  # ganti jika ffmpeg tidak di PATH
+FFMPEG_PATH = "ffmpeg"  # pastikan ffmpeg ada di PATH
 
 def download_youtube_audio(url):
     try:
-        # Folder output
         output_dir = "downloads"
         os.makedirs(output_dir, exist_ok=True)
 
-        # Download audio terbaik dalam format m4a
+        # Download audio terbaik
         ydl_opts = {
             "format": "bestaudio/best",
             "outtmpl": os.path.join(output_dir, "%(title)s.%(ext)s"),
@@ -23,23 +21,21 @@ def download_youtube_audio(url):
             info = ydl.extract_info(url, download=True)
             input_file = ydl.prepare_filename(info)
 
-        # Nama file output AAC 128kbps
+        # Output MP3 128kbps
         base_name = os.path.splitext(input_file)[0]
         output_file = base_name + ".mp3"
 
-        # Konversi ke mp3 AAC 128kbps
         cmd = [
             FFMPEG_PATH,
-            "-y",  # overwrite
+            "-y",
             "-i", input_file,
             "-vn",
-            "-c:a", "aac",
+            "-c:a", "libmp3lame",
             "-b:a", "128k",
             output_file
         ]
-        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(cmd, check=True)
 
-        # Hapus file asli setelah konversi
         if os.path.exists(input_file):
             os.remove(input_file)
 
@@ -54,9 +50,8 @@ def gradio_app(url):
     else:
         return None
 
-# UI Gradio
 with gr.Blocks() as demo:
-    gr.Markdown("# 🎵 YouTube to AAC 128kbps MP3 Downloader")
+    gr.Markdown("# 🎵 YouTube to MP3 128kbps Downloader")
     url_input = gr.Textbox(label="YouTube URL", placeholder="Masukkan link YouTube...")
     output_audio = gr.File(label="Hasil Download (MP3)")
     download_btn = gr.Button("Download")
